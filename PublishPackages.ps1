@@ -1,32 +1,9 @@
 $API_KEY = "oy2kbma37ahxksmawclqzmrpilznzesedidfdwie6eyoiu"
-$PACKAGE_DIR = "E:\Project\Materal\Materal\NugetPackages"
-# ×Ô¶¯»ñÈ¡×îĞÂ°æ±¾ºÅ
-$LatestVersion = ""
-$AllVersions = @()
-# ´ÓËùÓĞnupkgÎÄ¼şÖĞÌáÈ¡°æ±¾ºÅ
-Get-ChildItem -Path $PACKAGE_DIR -Filter *.nupkg | ForEach-Object {
-    if ($_.Name -match '\.(\d+\.\d+\.\d+.*)\.nupkg$') {
-        $Version = $matches[1]
-        $AllVersions += $Version
-    }
-}
-# Èç¹ûÕÒµ½ÁË°æ±¾ºÅ£¬ÔòÑ¡Ôñ×îĞÂµÄÒ»¸ö
-if ($AllVersions.Count -gt 0) {
-    # °´°æ±¾ºÅÅÅĞò£¨Ê¹ÓÃSystem.Version½øĞĞ±È½Ï£©
-    $SortedVersions = $AllVersions | ForEach-Object { [System.Version]::new($_.Split('-')[0]) } | Sort-Object -Descending
-    $LatestVersion = $SortedVersions[0].ToString()
-    Write-Host "ÕÒµ½×îĞÂ°æ±¾: $LatestVersion" -ForegroundColor Cyan
-} else {
-    Write-Host "Î´ÕÒµ½ÈÎºÎ°æ±¾ºÅ£¬Çë¼ì²éÎÄ¼ş¼ĞÖĞÊÇ·ñÓĞnupkgÎÄ¼ş" -ForegroundColor Yellow
-    exit
-}
-
-$VERSION = $LatestVersion
 $ALLOWED_FILE_LIST = @(
     "Materal.Abstractions",
     #"Materal.COA",
-    "Materal.ContextCache",
-    "Materal.ContextCache.SqlitePersistence",
+    #"Materal.ContextCache",
+    #"Materal.ContextCache.SqlitePersistence",
     "Materal.EventBus.Abstraction",
     "Materal.EventBus.Memory",
     "Materal.EventBus.RabbitMQ",
@@ -91,31 +68,28 @@ $ALLOWED_FILE_LIST = @(
     "Materal.Utils.Windows",
     "RC.ConfigClient"
 )
-Write-Host "¿ªÊ¼ÑéÖ¤°üÎÄ¼ş..." -ForegroundColor Cyan
 $ValidPackages = 0
-$InvalidPackages = 0
-Get-ChildItem -Path $PACKAGE_DIR -Filter *.nupkg | ForEach-Object {
-    $FullFileName = $_.Name    
-    # ÌáÈ¡°üÃû³ÆºÍ°æ±¾ºÅ
-    if ($FullFileName -match '(.+?)\.(\d+\.\d+\.\d+.*)\.nupkg$') {
-        $PackageName = $matches[1]
-        $PackageVersion = $matches[2]        
-        # ÑéÖ¤°üÃû³ÆºÍ°æ±¾ºÅ
-        $NameValid = $ALLOWED_FILE_LIST -contains $PackageName
-        $VersionValid = $PackageVersion -eq $VERSION        
-        # Êä³öÑéÖ¤½á¹û
-        if ($NameValid -and $VersionValid) {
-            Write-Host "$PackageName (°æ±¾ $PackageVersion) ÑéÖ¤Í¨¹ı£¬×¼±¸·¢²¼..." -ForegroundColor Green
-            dotnet nuget push $_.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+foreach ($package in $ALLOWED_FILE_LIST) {
+    Write-Host "æ£€æŸ¥åŒ…: $package" -ForegroundColor Cyan
+    try {
+        $localFile = (Get-ChildItem "../Packages/$package*.nupkg" | Sort-Object CreationTime -Descending)[0]
+        $localFileName = $localFile.BaseName
+        $localVersion = [System.Version]::Parse($localFileName.Split('.')[-3..-1] -join '.')
+        Write-Host "æœ¬åœ°æœ€æ–°ç‰ˆæœ¬: $localVersion" -ForegroundColor Cyan
+        $serverTrueVersion = (Find-Package $package -AllVersions | Sort-Object Version -Descending)[0].Version.ToString()
+        $serverVersion = [System.Version]::Parse($serverTrueVersion.Split('+')[0])
+        Write-Host "æœåŠ¡å™¨æœ€æ–°ç‰ˆæœ¬: $serverVersion" -ForegroundColor Cyan
+        if ($localVersion -gt $serverVersion) {
+            Write-Host "å¼€å§‹æ¨é€åŒ…: $package" -ForegroundColor Green
+            dotnet nuget push $localFile.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            Write-Host "æ¨é€æˆåŠŸ: $package" -ForegroundColor Green
             $ValidPackages++
+        } else {
+            Write-Host "ä¸éœ€æ¨é€: $package" -ForegroundColor Cyan
         }
-    } else {
-        Write-Host "ÎŞ·¨½âÎöÎÄ¼şÃû: $FullFileName" -ForegroundColor Yellow
-        $InvalidPackages++
+    }
+    catch {
+        Write-Host "æ‰¾ä¸åˆ°åŒ…: $package" -ForegroundColor Red
     }
 }
-
-# Êä³öÑéÖ¤½á¹ûÍ³¼Æ
-Write-Host "`n·¢²¼Íê³É! ½á¹ûÍ³¼Æ:" -ForegroundColor Cyan
-Write-Host "³É¹¦: $ValidPackages ¸ö°ü" -ForegroundColor Green
-Write-Host "Ê§°Ü: $InvalidPackages ¸ö°ü" -ForegroundColor $(if ($InvalidPackages -gt 0) { "Red" } else { "Green" })
+Write-Host "æ¨é€æˆåŠŸåŒ…æ•°: $ValidPackages" -ForegroundColor Green
