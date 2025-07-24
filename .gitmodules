@@ -1,0 +1,39 @@
+[submodule "Materal.Abstractions"]
+	path = Materal.Abstractions
+	url = https://github.com/MateralStore/Materal.Abstractions.git
+[submodule "Materal.COA"]
+	path = Materal.COA
+	url = https://github.com/MateralStore/Materal.COA.git
+[submodule "Materal.ContextCache"]
+	path = Materal.ContextCache
+	url = https://github.com/MateralStore/Materal.ContextCache.git
+[submodule "Materal.EventBus"]
+	path = Materal.EventBus
+	url = https://github.com/MateralStore/Materal.EventBus.git
+[submodule "Materal.Extensions"]
+	path = Materal.Extensions
+	url = https://github.com/MateralStore/Materal.Extensions.git
+[submodule "Materal.Gateway"]
+	path = Materal.Gateway
+	url = https://github.com/MateralStore/Materal.Gateway.git
+[submodule "Materal.Logger"]
+	path = Materal.Logger
+	url = https://github.com/MateralStore/Materal.Logger.git
+[submodule "Materal.MergeBlock"]
+	path = Materal.MergeBlock
+	url = https://github.com/MateralStore/Materal.MergeBlock.git
+[submodule "Materal.Oscillator"]
+	path = Materal.Oscillator
+	url = https://github.com/MateralStore/Materal.Oscillator.git
+[submodule "Materal.Test.Base"]
+	path = Materal.Test.Base
+	url = https://github.com/MateralStore/Materal.Test.Base.git
+[submodule "Materal.Tools"]
+	path = Materal.Tools
+	url = https://github.com/MateralStore/Materal.Tools.git
+[submodule "Materal.TTA"]
+	path = Materal.TTA
+	url = https://github.com/MateralStore/Materal.TTA.git
+[submodule "Materal.Utils"]
+	path = Materal.Utils
+	url = https://github.com/MateralStore/Materal.Utils.git
