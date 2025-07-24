@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		Common.props = Common.props
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		InstallTool.bat = InstallTool.bat
+		LICENSE = LICENSE
+		LICENSE_CN = LICENSE_CN
+		MergeBlockApplicationLibrary.props = MergeBlockApplicationLibrary.props
+		MergeBlockLibrary.props = MergeBlockLibrary.props
+		Packable.props = Packable.props
+		README.md = README.md
+		VSIXVersion.props = VSIXVersion.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{381A051B-C163-48FF-960F-9FC80E092E1D}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B4600EB-2FF4-4552-9F1E-C2040102EF86}
+	EndGlobalSection
+EndGlobal
