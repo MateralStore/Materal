@@ -6,7 +6,7 @@
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
 		<IsPackable>true</IsPackable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageOutputPath>../../Packages</PackageOutputPath>
+		<PackageOutputPath>../../../Packages</PackageOutputPath>
 		<Company>Materal</Company>
 		<Product>Materal</Product>
 		<Authors>Materal</Authors>
@@ -24,6 +24,7 @@
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)' == 'Release'">
 		<None Include="../README.md" Pack="true" PackagePath="" />
-		<None Include="../LICENSE" Pack="true" PackagePath="" />
+		<None Include="../../LICENSE" Pack="true" PackagePath="" />
+		<None Include="../../LICENSE_CN" Pack="true" PackagePath="" />
 	</ItemGroup>
 </Project>

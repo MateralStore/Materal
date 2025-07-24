@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.gitmodules = .gitmodules
+		ClearPackagesCache.ps1 = ClearPackagesCache.ps1
 		Common.props = Common.props
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
@@ -17,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 		MergeBlockApplicationLibrary.props = MergeBlockApplicationLibrary.props
 		MergeBlockLibrary.props = MergeBlockLibrary.props
 		Packable.props = Packable.props
+		PublishPackages.ps1 = PublishPackages.ps1
 		README.md = README.md
 		VSIXVersion.props = VSIXVersion.props
 	EndProjectSection
