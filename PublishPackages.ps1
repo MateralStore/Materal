@@ -72,13 +72,21 @@ $ValidPackages = 0
 foreach ($package in $ALLOWED_FILE_LIST) {
     Write-Host "检查包: $package" -ForegroundColor Cyan
     try {
-        $localFile = (Get-ChildItem "../Packages/$package*.nupkg" | Sort-Object CreationTime -Descending)[0]
-        $localFileName = $localFile.BaseName
-        $localVersion = [System.Version]::Parse($localFileName.Split('.')[-3..-1] -join '.')
-        Write-Host "本地最新版本: $localVersion" -ForegroundColor Cyan
-        $serverTrueVersion = (Find-Package $package -AllVersions | Sort-Object Version -Descending)[0].Version.ToString()
+        $localFile = $null;
+        $localFileName = $null;
+        $localVersion = $null;
+        foreach ($file in (Get-ChildItem "../Packages/$($package)*.nupkg")) {
+            $localFile = $file
+            $localFileName = $file.BaseName
+            $localVersion = [System.Version]::Parse($localFileName.Split('.')[-3..-1] -join '.')
+            if("$package.$localVersion" -eq $localFileName) {
+                break
+            }
+        }
+        Write-Host "本地版本: $localVersion" -ForegroundColor Cyan
+        $serverTrueVersion = (Find-Package $package -Source https://api.nuget.org/v3/index.json | Sort-Object Version -Descending)[0].Version.ToString()
         $serverVersion = [System.Version]::Parse($serverTrueVersion.Split('+')[0])
-        Write-Host "服务器最新版本: $serverVersion" -ForegroundColor Cyan
+        Write-Host "远端版本: $serverVersion" -ForegroundColor Cyan
         if ($localVersion -gt $serverVersion) {
             Write-Host "开始推送包: $package" -ForegroundColor Green
             dotnet nuget push $localFile.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
