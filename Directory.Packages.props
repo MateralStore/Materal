@@ -2,7 +2,6 @@
   <ItemGroup>
     <PackageVersion Include="AspectCore.Extensions.AspNetCore" Version="2.4.0" />
     <PackageVersion Include="AspectCore.Extensions.DependencyInjection" Version="2.4.0" />
-    <PackageVersion Include="AutoMapper" Version="15.0.0" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageVersion Include="Consul" Version="1.7.14.7" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
