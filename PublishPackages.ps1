@@ -56,6 +56,7 @@ $ALLOWED_FILE_LIST = @(
     "Materal.TTA.SqliteEFRepository",
     "Materal.TTA.SqlServerEFRepository",
     "Materal.Utils",
+    "Materal.Utils.AutoMapper",
     "Materal.Utils.BarCode",
     "Materal.Utils.CloudStorage.Tencent",
     "Materal.Utils.Consul",
