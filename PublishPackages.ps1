@@ -1,9 +1,9 @@
 $API_KEY = "oy2kbma37ahxksmawclqzmrpilznzesedidfdwie6eyoiu"
 $ALLOWED_FILE_LIST = @(
     "Materal.Abstractions",
-    #"Materal.COA",
-    #"Materal.ContextCache",
-    #"Materal.ContextCache.SqlitePersistence",
+    # "Materal.COA",
+    # "Materal.ContextCache",
+    # "Materal.ContextCache.SqlitePersistence",
     "Materal.EventBus.Abstraction",
     "Materal.EventBus.Memory",
     "Materal.EventBus.RabbitMQ",
@@ -68,36 +68,128 @@ $ALLOWED_FILE_LIST = @(
     "Materal.Utils.Windows",
     "RC.ConfigClient"
 )
+$LOCAL_PACKAGE_PATH = "../Packages"
+$serviceResources = $null
 $ValidPackages = 0
-foreach ($package in $ALLOWED_FILE_LIST) {
-    Write-Host "æ£€æŸ¥åŒ…: $package" -ForegroundColor Cyan
+# »ñÈ¡NuGet°üµÄ×îĞÂ°æ±¾ºÅ
+function Get-NuGetPackageServerLatestVersion {
+    param (
+        [string]$PackageName
+    )
+    if ($null -eq $serviceResources) {
+        $serviceIndex = Invoke-RestMethod "https://api.nuget.org/v3/index.json"
+        $serviceResources = $serviceIndex.resources
+    }
+    $version = Get-NuGetPackageServerLatestVersionFromNugetAPI $PackageName
+    if ($null -eq $version) {
+        $version = Get-NuGetPackageServerLatestVersionFromAzuresearch $PackageName
+    }
+    return $version
+}
+# ´ÓNugetAPI»ñÈ¡Nuget°üµÄ×îĞÂ°æ±¾
+function Get-NuGetPackageServerLatestVersionFromNugetAPI {
+    param (
+        [string]$PackageName
+    )
     try {
-        $localFile = $null;
-        $localFileName = $null;
-        $localVersion = $null;
-        foreach ($file in (Get-ChildItem "../Packages/$($package)*.nupkg")) {
-            $localFile = $file
-            $localFileName = $file.BaseName
-            $localVersion = [System.Version]::Parse($localFileName.Split('.')[-3..-1] -join '.')
-            if("$package.$localVersion" -eq $localFileName) {
-                break
-            }
-        }
-        Write-Host "æœ¬åœ°ç‰ˆæœ¬: $localVersion" -ForegroundColor Cyan
-        $serverTrueVersion = (Find-Package $package -Source https://api.nuget.org/v3/index.json | Sort-Object Version -Descending)[0].Version.ToString()
-        $serverVersion = [System.Version]::Parse($serverTrueVersion.Split('+')[0])
-        Write-Host "è¿œç«¯ç‰ˆæœ¬: $serverVersion" -ForegroundColor Cyan
-        if ($localVersion -gt $serverVersion) {
-            Write-Host "å¼€å§‹æ¨é€åŒ…: $package" -ForegroundColor Green
-            dotnet nuget push $localFile.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
-            Write-Host "æ¨é€æˆåŠŸ: $package" -ForegroundColor Green
-            $ValidPackages++
-        } else {
-            Write-Host "ä¸éœ€æ¨é€: $package" -ForegroundColor Cyan
+        $registrationUrl = $serviceResources | Where-Object { $_.'@type' -eq "RegistrationsBaseUrl/3.6.0" } | Select-Object -ExpandProperty '@id'
+        $packageUrl = "$registrationUrl/$($PackageName.ToLower())/index.json"
+        $packageData = Invoke-RestMethod $packageUrl
+        if ($packageData.data -and $packageData.data.Count -gt 0) {
+            $latestVersion = $packageData.items[-1].upper    
+            $version = [System.Version]::Parse($latestVersion)
+            return $version
         }
     }
     catch {
-        Write-Host "æ‰¾ä¸åˆ°åŒ…: $package" -ForegroundColor Red
+        Write-Warning "´ÓNugetAPI»ñÈ¡°ü°æ±¾ºÅÊ§°Ü"
+        return $null
     }
 }
-Write-Host "æ¨é€æˆåŠŸåŒ…æ•°: $ValidPackages" -ForegroundColor Green
+# ´ÓAzuresearch»ñÈ¡Nuget°üµÄ×îĞÂ°æ±¾
+function Get-NuGetPackageServerLatestVersionFromAzuresearch {
+    param (
+        [string]$PackageName
+    )
+    try {
+        $searchUrls = $serviceResources | Where-Object { $_.'@type' -eq "SearchQueryService" } | Select-Object -ExpandProperty '@id'
+        if ($searchUrls -is [array]) {
+            $searchUrl = $searchUrls[0]
+        }
+        else {
+            $searchUrl = $searchUrls
+        }
+        $searchUrl += "?q=packageid:$PackageName&prerelease=false&semVerLevel=2.0.0"
+        $response = Invoke-RestMethod -Uri $searchUrl -Method Get -ErrorAction Stop
+        if ($response.data -and $response.data.Count -gt 0) {
+            $package = $response.data | Where-Object { $_.id -eq $PackageName }
+            if ($package) {
+                $version = $package.version
+                $version = [System.Version]::Parse($version.Split('+')[0])
+                return $version
+            }
+        }
+        return $null
+    }
+    catch {
+        Write-Warning "´ÓAzuresearch»ñÈ¡°ü°æ±¾ºÅÊ§°Ü"
+        return $null
+    }
+}
+# »ñÈ¡±¾µØ×îĞÂ°æ±¾µÄNuget°üÎÄ¼ş
+function Get-NugetPackageLocalFileLatestVersion {
+    param (
+        [string]$PackageName
+    )
+    $files = Get-ChildItem "$LOCAL_PACKAGE_PATH" -Filter "*.nupkg" | Where-Object { $_.Name -match "^$PackageName(\.\d){3}.nupkg$" }
+    $version = $null
+    $file = $null
+    foreach ($currentFile in $files) {
+        $currentVersion = Get-NuGetPackageVersionByFile $currentFile
+        if (($null -eq $version) -or ($currentVersion -gt $version)) {
+            $version = $currentVersion
+            $file = $currentFile
+        }
+    }
+    return $file
+}
+# ¸ù¾İÎÄ¼ş»ñÈ¡Nuget°ü°æ±¾ºÅ
+function Get-NuGetPackageVersionByFile {
+    param (
+        $File
+    )
+    $versionString = $File.Name.Split('.')[-4..-2] -join '.'
+    $version = [System.Version]::Parse($versionString)
+    return $version
+}
+
+foreach ($packageName in $ALLOWED_FILE_LIST) {
+    Write-Host "¼ì²é°ü: $packageName" -ForegroundColor Cyan
+    $localFile = Get-NugetPackageLocalFileLatestVersion $packageName
+    if ($null -eq $localFile) {
+        Write-Warning "Ã»ÓĞÔÚ±¾µØÕÒµ½°ü: $packageName"
+        continue
+    }
+    $localVersion = Get-NuGetPackageVersionByFile $localFile
+    if ($null -eq $localVersion) {
+        Write-Warning "»ñÈ¡±¾µØ°ü$($packageName)°æ±¾Ê§°Ü:$($localFile.FullName)"
+        continue
+    }
+    Write-Host "±¾µØ°æ±¾: $localVersion" -ForegroundColor Cyan
+    $serverVersion = Get-NuGetPackageServerLatestVersion $packageName
+    if ($null -eq $serverVersion) {
+        Write-Warning "»ñÈ¡Ô¶¶Ë°ü$($packageName)°æ±¾Ê§°Ü"
+        continue
+    }
+    Write-Host "Ô¶¶Ë°æ±¾: $serverVersion" -ForegroundColor Cyan
+    if ($localVersion -gt $serverVersion) {
+        Write-Host "¿ªÊ¼ÍÆËÍ°ü: $packageName" -ForegroundColor Green
+        dotnet nuget push $localFile.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+        Write-Host "ÍÆËÍ³É¹¦: $packageName" -ForegroundColor Green
+        $ValidPackages++
+    }
+    else {
+        Write-Host "²»ĞèÍÆËÍ: $packageName" -ForegroundColor Cyan
+    }
+}
+Write-Host "ÍÆËÍ³É¹¦°üÊı: $ValidPackages" -ForegroundColor Green
