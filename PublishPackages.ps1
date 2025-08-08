@@ -130,6 +130,7 @@ function Get-NuGetPackageServerLatestVersionFromAzuresearch {
                 return $version
             }
         }
+        Write-Warning "从Azuresearch获取包版本号失败"
         return $null
     }
     catch {
