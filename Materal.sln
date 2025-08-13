@@ -224,6 +224,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{33F5F28B-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Materal.Utils.Test", "Materal.Utils\Materal.Utils.Test\Materal.Utils.Test.csproj", "{FC1F3D08-DA1D-461C-838C-A26A95FF6602}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Materal.Extensions.Test", "Materal.Extensions\Materal.Extensions.Test\Materal.Extensions.Test.csproj", "{3C688B62-A60B-4892-8212-82F4BC65DCFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -530,6 +532,10 @@ Global
 		{FC1F3D08-DA1D-461C-838C-A26A95FF6602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC1F3D08-DA1D-461C-838C-A26A95FF6602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC1F3D08-DA1D-461C-838C-A26A95FF6602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C688B62-A60B-4892-8212-82F4BC65DCFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C688B62-A60B-4892-8212-82F4BC65DCFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C688B62-A60B-4892-8212-82F4BC65DCFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C688B62-A60B-4892-8212-82F4BC65DCFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -624,6 +630,7 @@ Global
 		{8906A1C7-5E38-A234-42BD-7BF32B631B21} = {A302A4EA-0548-4B50-8673-69B28EDD7042}
 		{C63E534A-B1E2-4D52-9506-F277330B66C4} = {29FB92E0-F76E-4D7D-B274-A86832044CD6}
 		{FC1F3D08-DA1D-461C-838C-A26A95FF6602} = {33F5F28B-98A7-41D9-95B5-B6D6DE4ABA35}
+		{3C688B62-A60B-4892-8212-82F4BC65DCFF} = {33F5F28B-98A7-41D9-95B5-B6D6DE4ABA35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B4600EB-2FF4-4552-9F1E-C2040102EF86}
