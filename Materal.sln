@@ -217,6 +217,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09证书授权", "09证书�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Materal.Abstractions.Test", "Materal.Abstractions\Materal.Abstractions.Test\Materal.Abstractions.Test.csproj", "{58950F8F-6C7A-47CC-9689-0AD4D7643FEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Materal.Logger.Test", "Materal.Logger\Materal.Logger.Test\Materal.Logger.Test.csproj", "{1AE5976A-7B71-493A-801D-9FED881B4B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpLoggerServer", "Materal.Logger\HttpLoggerServer\HttpLoggerServer.csproj", "{57CDF14F-0D81-52BA-54C6-D09F38641A96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -511,6 +515,14 @@ Global
 		{58950F8F-6C7A-47CC-9689-0AD4D7643FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58950F8F-6C7A-47CC-9689-0AD4D7643FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58950F8F-6C7A-47CC-9689-0AD4D7643FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE5976A-7B71-493A-801D-9FED881B4B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE5976A-7B71-493A-801D-9FED881B4B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE5976A-7B71-493A-801D-9FED881B4B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE5976A-7B71-493A-801D-9FED881B4B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57CDF14F-0D81-52BA-54C6-D09F38641A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57CDF14F-0D81-52BA-54C6-D09F38641A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57CDF14F-0D81-52BA-54C6-D09F38641A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57CDF14F-0D81-52BA-54C6-D09F38641A96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -611,6 +623,8 @@ Global
 		{486F0D7B-B0E2-4ACD-B8C4-5F3D79729720} = {33F5F28B-98A7-41D9-95B5-B6D6DE4ABA35}
 		{1B6E6517-0BA0-42CE-B278-293F27B8BEB9} = {33F5F28B-98A7-41D9-95B5-B6D6DE4ABA35}
 		{58950F8F-6C7A-47CC-9689-0AD4D7643FEC} = {21A731B8-4CF3-4DB4-9EFF-FEF6B416879D}
+		{1AE5976A-7B71-493A-801D-9FED881B4B1B} = {97106DF7-5315-4424-9723-963820EBF190}
+		{57CDF14F-0D81-52BA-54C6-D09F38641A96} = {97106DF7-5315-4424-9723-963820EBF190}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B4600EB-2FF4-4552-9F1E-C2040102EF86}
