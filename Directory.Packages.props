@@ -50,6 +50,7 @@
     <PackageVersion Include="Oracle.ManagedDataAccess.Core" Version="23.7.0" />
     <PackageVersion Include="PinYinConverterCore" Version="1.0.2" />
     <PackageVersion Include="Polly" Version="8.6.1" />
+    <PackageVersion Include="Portable.System.DateTimeOnly" Version="9.0.0" />
     <PackageVersion Include="Quartz" Version="3.14.0" />
     <PackageVersion Include="RabbitMQ.Client" Version="7.1.2" />
     <PackageVersion Include="SkiaSharp" Version="3.119.0" />

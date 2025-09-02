@@ -26,8 +26,8 @@ $ALLOWED_FILE_LIST = @(
     "Materal.MergeBlock.Application.Abstractions",
     "Materal.MergeBlock.Authorization",
     "Materal.MergeBlock.Authorization.Abstractions",
-    #"Materal.MergeBlock.COA",
-    "Materal.MergeBlock.ConfigCenter",
+    # "Materal.MergeBlock.COA",
+    # "Materal.MergeBlock.ConfigCenter",
     "Materal.MergeBlock.Consul",
     "Materal.MergeBlock.Consul.Abstractions",
     "Materal.MergeBlock.Cors",
@@ -66,10 +66,10 @@ $ALLOWED_FILE_LIST = @(
     "Materal.Utils.Redis",
     "Materal.Utils.Text",
     "Materal.Utils.Wechat",
-    "Materal.Utils.Windows",
-    "RC.ConfigClient"
+    "Materal.Utils.Windows"
+    # "RC.ConfigClient"
 )
-$LOCAL_PACKAGE_PATH = "../Packages"
+$LOCAL_PACKAGE_PATH = "E:\Project\Materal\Packages"
 $serviceResources = $null
 $ValidPackages = 0
 # 获取NuGet包的最新版本号
