@@ -12,7 +12,7 @@
     <PackageVersion Include="LitJson" Version="0.19.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
     <PackageVersion Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.1" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="9.0.6" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.6" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
@@ -47,7 +47,7 @@
     <PackageVersion Include="Ocelot.Cache.CacheManager" Version="23.4.3" />
     <PackageVersion Include="Ocelot.Provider.Consul" Version="23.4.3" />
     <PackageVersion Include="Ocelot.Provider.Polly" Version="23.4.3" />
-    <PackageVersion Include="Oracle.ManagedDataAccess.Core" Version="23.7.0" />
+    <PackageVersion Include="Oracle.ManagedDataAccess.Core" Version="23.9.1" />
     <PackageVersion Include="PinYinConverterCore" Version="1.0.2" />
     <PackageVersion Include="Polly" Version="8.6.1" />
     <PackageVersion Include="Portable.System.DateTimeOnly" Version="9.0.0" />
@@ -58,6 +58,7 @@
     <PackageVersion Include="StackExchange.Redis" Version="2.8.41" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.1" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+    <PackageVersion Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageVersion Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
     <PackageVersion Include="System.Text.Json" Version="9.0.6" />
     <PackageVersion Include="System.Threading.Tasks.Dataflow" Version="9.0.6" />
