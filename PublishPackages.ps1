@@ -143,7 +143,7 @@ function Get-NugetPackageLocalFileLatestVersion {
     param (
         [string]$PackageName
     )
-    $files = Get-ChildItem "$LOCAL_PACKAGE_PATH" -Filter "*.nupkg" | Where-Object { $_.Name -match "^$PackageName(\.\d){3}.nupkg$" }
+    $files = Get-ChildItem "$LOCAL_PACKAGE_PATH" -Filter "*.nupkg" | Where-Object { $_.Name -match "^$PackageName(\.\d+){3}.nupkg$" }
     $version = $null
     $file = $null
     foreach ($currentFile in $files) {
