@@ -13,6 +13,8 @@
     <Project Path="Materal.Utils/Materal.Utils.BarCode/Materal.Utils.BarCode.csproj" />
     <Project Path="Materal.Utils/Materal.Utils.CloudStorage.Tencent/Materal.Utils.CloudStorage.Tencent.csproj" />
     <Project Path="Materal.Utils/Materal.Utils.Consul/Materal.Utils.Consul.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Crypto/Materal.Utils.Crypto.csproj" Id="fb97cd25-9138-420f-9b44-773f10cd254c" />
+    <Project Path="Materal.Utils/Materal.Utils.Email/Materal.Utils.Email.csproj" Id="f7c9d4df-3723-4d36-8530-498fedf0fc3f" />
     <Project Path="Materal.Utils/Materal.Utils.Excel/Materal.Utils.Excel.csproj" />
     <Project Path="Materal.Utils/Materal.Utils.Image/Materal.Utils.Image.csproj" />
     <Project Path="Materal.Utils/Materal.Utils.MongoDB/Materal.Utils.MongoDB.csproj" />
@@ -63,7 +65,7 @@
     <Project Path="Materal.MergeBlock/Materal.MergeBlock.Web/Materal.MergeBlock.Web.csproj" />
     <Project Path="Materal.MergeBlock/Materal.MergeBlock.WindowsService/Materal.MergeBlock.WindowsService.csproj" />
     <Project Path="Materal.MergeBlock/Materal.MergeBlock/Materal.MergeBlock.csproj" />
-    <Project Path="Materal.MergeBlock/MateralMergeBlockVSIX/MateralMergeBlockVSIX.csproj" />
+    <Project Path="Materal.MergeBlock/MateralMergeBlockVSIX/MateralMergeBlockVSIX.csproj" Id="84f13054-a688-454b-9335-fedf86eb6408" />
   </Folder>
   <Folder Name="/Src/08MergeBlock/Modules/">
     <Project Path="Materal.MergeBlock/Materal.MergeBlock.AccessLog/Materal.MergeBlock.AccessLog.csproj" />
@@ -82,6 +84,7 @@
     <Project Path="Materal.MergeBlock/Materal.MergeBlock.Swagger/Materal.MergeBlock.Swagger.csproj" />
   </Folder>
   <Folder Name="/Src/09证书授权/">
+    <Project Path="Materal.COA/Materal.COA.Generator/Materal.COA.Generator.csproj" Id="4b607306-2f04-4d9c-8499-7e555c6c27a0" />
     <Project Path="Materal.COA/Materal.COA/Materal.COA.csproj" />
     <Project Path="Materal.COA/Materal.MergeBlock.COA/Materal.MergeBlock.COA.csproj" />
   </Folder>
@@ -91,7 +94,7 @@
     <Project Path="Materal.Tools/Materal.Tools.WinUI/Materal.Tools.WinUI.csproj">
       <Platform Project="x64" />
     </Project>
-    <Project Path="Materal.Tools/MateralToolsVSIX/MateralToolsVSIX.csproj" />
+    <Project Path="Materal.Tools/MateralToolsVSIX/MateralToolsVSIX.csproj" Id="21d5a109-3601-4f88-a283-d47cb826299f" />
     <Project Path="Materal.Tools/SignalRClientWeb/SignalRClientWeb.csproj" />
   </Folder>
   <Folder Name="/Src/99其他/">
@@ -121,7 +124,9 @@
     <Project Path="Materal.MergeBlock/MergeBlock.WebTest/MergeBlock.WebTest.csproj" />
     <Project Path="Materal.MergeBlock/MMB.WebModuleTest/MMB.WebModuleTest.csproj" />
   </Folder>
-  <Folder Name="/Test/09证书授权/" />
+  <Folder Name="/Test/09证书授权/">
+    <Project Path="Materal.COA/Materal.COA.Test/Materal.COA.Test.csproj" Id="68aea446-415b-4bb6-a3f0-3a66c1e3c19f" />
+  </Folder>
   <Folder Name="/解决方案项/">
     <File Path=".gitattributes" />
     <File Path=".gitignore" />

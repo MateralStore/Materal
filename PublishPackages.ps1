@@ -1,7 +1,7 @@
-$API_KEY = "oy2kbma37ahxksmawclqzmrpilznzesedidfdwie6eyoiu"
+$API_KEY = Get-Content -Path "$PSScriptRoot\NugetAPIKey.txt" -Raw
 $ALLOWED_FILE_LIST = @(
     "Materal.Abstractions",
-    # "Materal.COA",
+    "Materal.COA",
     # "Materal.ContextCache",
     # "Materal.ContextCache.SqlitePersistence",
     "Materal.EventBus.Abstraction",
@@ -26,7 +26,7 @@ $ALLOWED_FILE_LIST = @(
     "Materal.MergeBlock.Application.Abstractions",
     "Materal.MergeBlock.Authorization",
     "Materal.MergeBlock.Authorization.Abstractions",
-    # "Materal.MergeBlock.COA",
+    "Materal.MergeBlock.COA",
     # "Materal.MergeBlock.ConfigCenter",
     "Materal.MergeBlock.Consul",
     "Materal.MergeBlock.Consul.Abstractions",
@@ -61,6 +61,7 @@ $ALLOWED_FILE_LIST = @(
     "Materal.Utils.CloudStorage.Tencent",
     "Materal.Utils.Consul",
     "Materal.Utils.Excel",
+    "Materal.Utils.Email",
     "Materal.Utils.Image",
     "Materal.Utils.MongoDB",
     "Materal.Utils.Redis",
@@ -72,7 +73,7 @@ $ALLOWED_FILE_LIST = @(
 $LOCAL_PACKAGE_PATH = "E:\Project\Materal\Packages"
 $serviceResources = $null
 $ValidPackages = 0
-# »ñÈ¡NuGet°üµÄ×îĞÂ°æ±¾ºÅ
+# è·å–NuGetåŒ…çš„æœ€æ–°ç‰ˆæœ¬å·
 function Get-NuGetPackageServerLatestVersion {
     param (
         [string]$PackageName
@@ -87,7 +88,7 @@ function Get-NuGetPackageServerLatestVersion {
     }
     return $version
 }
-# ´ÓNugetAPI»ñÈ¡Nuget°üµÄ×îĞÂ°æ±¾
+# ä»NugetAPIè·å–NugetåŒ…çš„æœ€æ–°ç‰ˆæœ¬
 function Get-NuGetPackageServerLatestVersionFromNugetAPI {
     param (
         [string]$PackageName
@@ -103,11 +104,11 @@ function Get-NuGetPackageServerLatestVersionFromNugetAPI {
         }
     }
     catch {
-        Write-Warning "´ÓNugetAPI»ñÈ¡°ü°æ±¾ºÅÊ§°Ü"
+        Write-Warning "ä»NugetAPIè·å–åŒ…ç‰ˆæœ¬å·å¤±è´¥"
         return $null
     }
 }
-# ´ÓAzuresearch»ñÈ¡Nuget°üµÄ×îĞÂ°æ±¾
+# ä»Azuresearchè·å–NugetåŒ…çš„æœ€æ–°ç‰ˆæœ¬
 function Get-NuGetPackageServerLatestVersionFromAzuresearch {
     param (
         [string]$PackageName
@@ -130,15 +131,15 @@ function Get-NuGetPackageServerLatestVersionFromAzuresearch {
                 return $version
             }
         }
-        Write-Warning "´ÓAzuresearch»ñÈ¡°ü°æ±¾ºÅÊ§°Ü"
+        Write-Warning "ä»Azuresearchè·å–åŒ…ç‰ˆæœ¬å·å¤±è´¥"
         return $null
     }
     catch {
-        Write-Warning "´ÓAzuresearch»ñÈ¡°ü°æ±¾ºÅÊ§°Ü"
+        Write-Warning "ä»Azuresearchè·å–åŒ…ç‰ˆæœ¬å·å¤±è´¥"
         return $null
     }
 }
-# »ñÈ¡±¾µØ×îĞÂ°æ±¾µÄNuget°üÎÄ¼ş
+# è·å–æœ¬åœ°æœ€æ–°ç‰ˆæœ¬çš„NugetåŒ…æ–‡ä»¶
 function Get-NugetPackageLocalFileLatestVersion {
     param (
         [string]$PackageName
@@ -155,7 +156,7 @@ function Get-NugetPackageLocalFileLatestVersion {
     }
     return $file
 }
-# ¸ù¾İÎÄ¼ş»ñÈ¡Nuget°ü°æ±¾ºÅ
+# æ ¹æ®æ–‡ä»¶è·å–NugetåŒ…ç‰ˆæœ¬å·
 function Get-NuGetPackageVersionByFile {
     param (
         $File
@@ -166,32 +167,32 @@ function Get-NuGetPackageVersionByFile {
 }
 
 foreach ($packageName in $ALLOWED_FILE_LIST) {
-    Write-Host "¼ì²é°ü: $packageName" -ForegroundColor Cyan
+    Write-Host "æ£€æŸ¥åŒ…: $packageName" -ForegroundColor Cyan
     $localFile = Get-NugetPackageLocalFileLatestVersion $packageName
     if ($null -eq $localFile) {
-        Write-Warning "Ã»ÓĞÔÚ±¾µØÕÒµ½°ü: $packageName"
+        Write-Warning "æ²¡æœ‰åœ¨æœ¬åœ°æ‰¾åˆ°åŒ…: $packageName"
         continue
     }
     $localVersion = Get-NuGetPackageVersionByFile $localFile
     if ($null -eq $localVersion) {
-        Write-Warning "»ñÈ¡±¾µØ°ü$($packageName)°æ±¾Ê§°Ü:$($localFile.FullName)"
+        Write-Warning "è·å–æœ¬åœ°åŒ…$($packageName)ç‰ˆæœ¬å¤±è´¥:$($localFile.FullName)"
         continue
     }
-    Write-Host "±¾µØ°æ±¾: $localVersion" -ForegroundColor Cyan
+    Write-Host "æœ¬åœ°ç‰ˆæœ¬: $localVersion" -ForegroundColor Cyan
     $serverVersion = Get-NuGetPackageServerLatestVersion $packageName
     if ($null -eq $serverVersion) {
-        Write-Warning "»ñÈ¡Ô¶¶Ë°ü$($packageName)°æ±¾Ê§°Ü"
+        Write-Warning "è·å–è¿œç«¯åŒ…$($packageName)ç‰ˆæœ¬å¤±è´¥"
         continue
     }
-    Write-Host "Ô¶¶Ë°æ±¾: $serverVersion" -ForegroundColor Cyan
+    Write-Host "è¿œç«¯ç‰ˆæœ¬: $serverVersion" -ForegroundColor Cyan
     if ($localVersion -gt $serverVersion) {
-        Write-Host "¿ªÊ¼ÍÆËÍ°ü: $packageName" -ForegroundColor Green
+        Write-Host "å¼€å§‹æ¨é€åŒ…: $packageName" -ForegroundColor Green
         dotnet nuget push $localFile.FullName --api-key $API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
-        Write-Host "ÍÆËÍ³É¹¦: $packageName" -ForegroundColor Green
+        Write-Host "æ¨é€æˆåŠŸ: $packageName" -ForegroundColor Green
         $ValidPackages++
     }
     else {
-        Write-Host "²»ĞèÍÆËÍ: $packageName" -ForegroundColor Cyan
+        Write-Host "ä¸éœ€æ¨é€: $packageName" -ForegroundColor Cyan
     }
 }
-Write-Host "ÍÆËÍ³É¹¦°üÊı: $ValidPackages" -ForegroundColor Green
+Write-Host "æ¨é€æˆåŠŸåŒ…æ•°: $ValidPackages" -ForegroundColor Green
