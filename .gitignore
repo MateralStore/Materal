@@ -265,3 +265,8 @@ __pycache__/
 *.pyc
 /Materal.APP/demo/iconfont
 /NugetAPIKey.txt
+
+.agents
+.claude
+.opencode
+.windsurf
