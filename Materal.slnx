@@ -142,7 +142,7 @@
     <File Path="Common.props" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
-    <File Path="InstallTool.bat" />
+    <File Path="InstallTool.ps1" />
     <File Path="LICENSE" />
     <File Path="LICENSE_CN" />
     <File Path="MergeBlockApplicationLibrary.props" />

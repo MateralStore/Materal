@@ -64,6 +64,7 @@
     <PackageVersion Include="Portable.System.DateTimeOnly" Version="9.0.1" />
     <PackageVersion Include="Quartz" Version="3.15.1" />
     <PackageVersion Include="RabbitMQ.Client" Version="7.2.0" />
+    <PackageVersion Include="Scriban" Version="6.5.2" />
     <PackageVersion Include="SkiaSharp" Version="3.119.1" />
     <PackageVersion Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" />
     <PackageVersion Include="StackExchange.Redis" Version="2.10.1" />
