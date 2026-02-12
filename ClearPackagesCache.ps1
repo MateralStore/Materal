@@ -1,4 +1,4 @@
-$nugetCacheDir = 'E:\Packages\Nuget\Packages'
+$nugetCacheDir = 'C:\Users\cloom\.nuget\packages'
 Get-ChildItem -Path $nugetCacheDir -Directory -Filter "materal.*" | Remove-Item -Recurse -Force
 Write-Host "已清空Materal Nuget包缓存" -ForegroundColor Cyan
 Get-ChildItem -Path $nugetCacheDir -Directory -Filter "RC.*" | Remove-Item -Recurse -Force
