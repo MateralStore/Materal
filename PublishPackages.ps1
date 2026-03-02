@@ -1,75 +1,4 @@
 $API_KEY = Get-Content -Path "$PSScriptRoot\NugetAPIKey.txt" -Raw
-$ALLOWED_FILE_LIST = @(
-    "Materal.Abstractions",
-    "Materal.COA",
-    # "Materal.ContextCache",
-    # "Materal.ContextCache.SqlitePersistence",
-    "Materal.EventBus.Abstraction",
-    "Materal.EventBus.Memory",
-    "Materal.EventBus.RabbitMQ",
-    "Materal.Extensions.DependencyInjection",
-    "Materal.Extensions.DependencyInjection.AspNetCore",
-    # "Materal.Gateway",
-    "Materal.Logger",
-    "Materal.Logger.Abstractions",
-    "Materal.Logger.LoggerTrace",
-    "Materal.Logger.MongoLogger",
-    "Materal.Logger.MySqlLogger",
-    "Materal.Logger.OracleLogger",
-    "Materal.Logger.SqliteLogger",
-    "Materal.Logger.SqlServerLogger",
-    "Materal.Logger.WebSocketLogger",
-    "Materal.MergeBlock",
-    "Materal.MergeBlock.Abstractions",
-    "Materal.MergeBlock.AccessLog",
-    "Materal.MergeBlock.Application.Abstractions",
-    "Materal.MergeBlock.Authorization",
-    "Materal.MergeBlock.Authorization.Abstractions",
-    "Materal.MergeBlock.COA",
-    # "Materal.MergeBlock.ConfigCenter",
-    "Materal.MergeBlock.Consul",
-    "Materal.MergeBlock.Cors",
-    "Materal.MergeBlock.Domain.Abstractions",
-    "Materal.MergeBlock.EventBus",
-    "Materal.MergeBlock.ExceptionInterceptor",
-    "Materal.MergeBlock.GeneratorCode",
-    "Materal.MergeBlock.Logger",
-    "Materal.MergeBlock.Oscillator",
-    "Materal.MergeBlock.Oscillator.Abstractions",
-    "Materal.MergeBlock.Repository.Abstractions",
-    "Materal.MergeBlock.ResponseCompression",
-    "Materal.MergeBlock.Swagger",
-    "Materal.MergeBlock.Swagger.Abstractions",
-    "Materal.MergeBlock.Web",
-    "Materal.MergeBlock.Web.Abstractions",
-    "Materal.MergeBlock.WindowsService",
-    "Materal.Oscillator",
-    "Materal.Oscillator.Abstractions",
-    "Materal.Test.Base",
-    "Materal.Tools.Command",
-    "Materal.Tools.Core",
-    "Materal.TTA.Common",
-    "Materal.TTA.EFRepository",
-    "Materal.TTA.MySqlEFRepository",
-    "Materal.TTA.SqliteEFRepository",
-    "Materal.TTA.SqlServerEFRepository",
-    "Materal.Utils",
-    "Materal.Utils.AutoMapper",
-    "Materal.Utils.BarCode",
-    "Materal.Utils.Caching",
-    "Materal.Utils.CloudStorage.Tencent",
-    "Materal.Utils.Consoles",
-    "Materal.Utils.Crypto",
-    "Materal.Utils.Excel",
-    "Materal.Utils.Email",
-    "Materal.Utils.Image",
-    "Materal.Utils.MongoDB",
-    "Materal.Utils.Network",
-    "Materal.Utils.Redis",
-    "Materal.Utils.Wechat",
-    "Materal.Utils.Windows"
-    # "RC.ConfigClient"
-)
 $LOCAL_PACKAGE_PATH = "E:\Project\Materal\Packages"
 $serviceResources = $null
 $ValidPackages = 0
@@ -165,6 +94,24 @@ function Get-NuGetPackageVersionByFile {
     $version = [System.Version]::Parse($versionString)
     return $version
 }
+# 获取所有包名称（去除.nupkg后缀和版本号）
+function Get-AllowedFileList {
+    $files = Get-ChildItem "$LOCAL_PACKAGE_PATH" -Filter "*.nupkg"
+    $packageNames = @()
+    foreach ($currentFile in $files) {
+        # 去掉 .nupkg 后缀
+        $nameWithoutExt = $currentFile.Name -replace '\.nupkg$', ''
+        # 去掉版本号（最后3个点分隔的数字）
+        $parts = $nameWithoutExt -split '\.'
+        if ($parts.Count -ge 3) {
+            $packageName = $parts[0..($parts.Count - 4)] -join '.'
+            $packageNames += $packageName
+        }
+    }
+    return $packageNames | Select-Object -Unique
+}
+
+$ALLOWED_FILE_LIST = Get-AllowedFileList
 
 foreach ($packageName in $ALLOWED_FILE_LIST) {
     Write-Host "检查包: $packageName" -ForegroundColor Cyan
@@ -195,4 +142,5 @@ foreach ($packageName in $ALLOWED_FILE_LIST) {
         Write-Host "不需推送: $packageName" -ForegroundColor Cyan
     }
 }
+
 Write-Host "推送成功包数: $ValidPackages" -ForegroundColor Green
