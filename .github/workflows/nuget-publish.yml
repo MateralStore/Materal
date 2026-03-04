@@ -33,10 +33,10 @@ jobs:
       - name: 列出生成的包（调试）
         run: |
           echo "=== Packages 目录内容 ==="
-          ls -la ./Packages/
+          ls -la ../Packages/
           echo ""
           echo "=== 包文件详情 ==="
-          for pkg in ./Packages/*.nupkg; do
+          for pkg in ../Packages/*.nupkg; do
             if [ -f "$pkg" ]; then
               echo "包: $(basename $pkg)"
             fi
