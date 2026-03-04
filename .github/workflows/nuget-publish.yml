@@ -25,19 +25,19 @@ jobs:
           dotnet-version: '10.0'
 
       - name: 还原依赖
-        run: dotnet restore Materal.slnx
+        run: dotnet restore Materal.Packable.slnx
 
       - name: 构建项目
-        run: dotnet build Materal.slnx -c Release --no-restore
+        run: dotnet build Materal.Packable.slnx -c Release --no-restore
 
       - name: 发布到 NuGet
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if [ -z "$(ls -A ../Packages/*.nupkg 2>/dev/null)" ]; then
+          if [ -z "$(ls -A ./Packages/*.nupkg 2>/dev/null)" ]; then
             echo "没有需要发布的包"
             exit 0
           fi
-          for nupkg in ../Packages/*.nupkg; do
+          for nupkg in ./Packages/*.nupkg; do
             echo "正在发布: $nupkg"
             dotnet nuget push "$nupkg" \
               --source https://api.nuget.org/v3/index.json \

@@ -1,0 +1,88 @@
+<Solution>
+  <Folder Name="/Src/00基础库/">
+    <Project Path="Materal.Abstractions/Materal.Abstractions/Materal.Abstractions.csproj" />
+  </Folder>
+  <Folder Name="/Src/01工具库/">
+    <Project Path="Materal.Utils/Materal.Utils.AutoMapper/Materal.Utils.AutoMapper.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.BarCode/Materal.Utils.BarCode.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Caching/Materal.Utils.Caching.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.CloudStorage.Tencent/Materal.Utils.CloudStorage.Tencent.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Consoles/Materal.Utils.Consoles.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Crypto/Materal.Utils.Crypto.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Email/Materal.Utils.Email.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Excel/Materal.Utils.Excel.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Image/Materal.Utils.Image.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.MongoDB/Materal.Utils.MongoDB.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Network/Materal.Utils.Network.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Redis/Materal.Utils.Redis.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Validation/Materal.Utils.Validation.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils.Wechat/Materal.Utils.Wechat.csproj" />
+    <Project Path="Materal.Utils/Materal.Utils/Materal.Utils.csproj" />
+  </Folder>
+  <Folder Name="/Src/02扩展库/">
+    <Project Path="Materal.Extensions/Materal.Extensions.DependencyInjection.AspNetCore/Materal.Extensions.DependencyInjection.AspNetCore.csproj" />
+    <Project Path="Materal.Extensions/Materal.Extensions.DependencyInjection/Materal.Extensions.DependencyInjection.csproj" />
+  </Folder>
+  <Folder Name="/Src/03日志库/">
+    <Project Path="Materal.Logger/Materal.Logger.Abstractions/Materal.Logger.Abstractions.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.LoggerTrace/Materal.Logger.LoggerTrace.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.MongoLogger/Materal.Logger.MongoLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.MySqlLogger/Materal.Logger.MySqlLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.OracleLogger/Materal.Logger.OracleLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.SqliteLogger/Materal.Logger.SqliteLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.SqlServerLogger/Materal.Logger.SqlServerLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger.WebSocketLogger/Materal.Logger.WebSocketLogger.csproj" />
+    <Project Path="Materal.Logger/Materal.Logger/Materal.Logger.csproj" />
+  </Folder>
+  <Folder Name="/Src/04事件总线/">
+    <Project Path="Materal.EventBus/Materal.EventBus.Abstraction/Materal.EventBus.Abstraction.csproj" />
+    <Project Path="Materal.EventBus/Materal.EventBus.Memory/Materal.EventBus.Memory.csproj" />
+    <Project Path="Materal.EventBus/Materal.EventBus.RabbitMQ/Materal.EventBus.RabbitMQ.csproj" />
+  </Folder>
+  <Folder Name="/Src/05调度器/">
+    <Project Path="Materal.Oscillator/Materal.Oscillator.Abstractions/Materal.Oscillator.Abstractions.csproj" />
+    <Project Path="Materal.Oscillator/Materal.Oscillator/Materal.Oscillator.csproj" />
+  </Folder>
+  <Folder Name="/Src/06ORM/">
+    <Project Path="Materal.TTA/Materal.TTA.Common/Materal.TTA.Common.csproj" />
+    <Project Path="Materal.TTA/Materal.TTA.EFRepository/Materal.TTA.EFRepository.csproj" />
+    <Project Path="Materal.TTA/Materal.TTA.MySqlEFRepository/Materal.TTA.MySqlEFRepository.csproj" />
+    <Project Path="Materal.TTA/Materal.TTA.SqliteEFRepository/Materal.TTA.SqliteEFRepository.csproj" />
+    <Project Path="Materal.TTA/Materal.TTA.SqlServerEFRepository/Materal.TTA.SqlServerEFRepository.csproj" />
+  </Folder>
+  <Folder Name="/Src/07MergeBlock/">
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Abstractions/Materal.MergeBlock.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Application.Abstractions/Materal.MergeBlock.Application.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Domain.Abstractions/Materal.MergeBlock.Domain.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.GeneratorCode/Materal.MergeBlock.GeneratorCode.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Repository.Abstractions/Materal.MergeBlock.Repository.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Tools/Materal.MergeBlock.Tools.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Web.Abstractions/Materal.MergeBlock.Web.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Web/Materal.MergeBlock.Web.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.WindowsService/Materal.MergeBlock.WindowsService.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock/Materal.MergeBlock.csproj" />
+  </Folder>
+  <Folder Name="/Src/07MergeBlock/Modules/">
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.AccessLog/Materal.MergeBlock.AccessLog.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Authorization.Abstractions/Materal.MergeBlock.Authorization.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Authorization/Materal.MergeBlock.Authorization.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Cors/Materal.MergeBlock.Cors.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.EventBus/Materal.MergeBlock.EventBus.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.ExceptionInterceptor/Materal.MergeBlock.ExceptionInterceptor.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Logger/Materal.MergeBlock.Logger.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Oscillator.Abstractions/Materal.MergeBlock.Oscillator.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Oscillator/Materal.MergeBlock.Oscillator.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.ResponseCompression/Materal.MergeBlock.ResponseCompression.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Swagger.Abstractions/Materal.MergeBlock.Swagger.Abstractions.csproj" />
+    <Project Path="Materal.MergeBlock/Materal.MergeBlock.Swagger/Materal.MergeBlock.Swagger.csproj" />
+  </Folder>
+  <Folder Name="/Src/08证书授权/">
+    <Project Path="Materal.COA/Materal.COA.Generator/Materal.COA.Generator.csproj" />
+    <Project Path="Materal.COA/Materal.COA/Materal.COA.csproj" />
+    <Project Path="Materal.COA/Materal.MergeBlock.COA/Materal.MergeBlock.COA.csproj" />
+  </Folder>
+  <Folder Name="/Src/99工具/">
+    <Project Path="Materal.Tools/Materal.Tools.Command/Materal.Tools.Command.csproj" />
+    <Project Path="Materal.Tools/Materal.Tools.Core/Materal.Tools.Core.csproj" />
+  </Folder>
+</Solution>
