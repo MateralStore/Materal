@@ -30,19 +30,17 @@ jobs:
       - name: 构建项目
         run: dotnet build Materal.Packable.slnx -c Release --no-restore
 
-      - name: 列出生成的包（调试）
-        run: |
-          echo "=== Packages 目录内容 ==="
-          ls -la ../Packages/
-          echo ""
-          echo "=== 包文件详情 ==="
-          for pkg in ../Packages/*.nupkg; do
-            if [ -f "$pkg" ]; then
-              echo "包: $(basename $pkg)"
-            fi
-          done
-
       - name: 发布到 NuGet
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          echo "发布功能已禁用，仅调试"
+          if [ -z "$(ls -A ../Packages/*.nupkg 2>/dev/null)" ]; then
+            echo "没有需要发布的包"
+            exit 0
+          fi
+          for nupkg in ../Packages/*.nupkg; do
+            echo "正在发布: $nupkg"
+            dotnet nuget push "$nupkg" \
+              --source https://api.nuget.org/v3/index.json \
+              --api-key ${{ secrets.NUGET_API_KEY }} \
+              --skip-duplicate
+          done
