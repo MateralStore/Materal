@@ -13,7 +13,8 @@
 		</Exec>
 		<PropertyGroup>
 			<GitTag Condition="'$(_TempGitTag)' != ''">$(_TempGitTag.Trim())</GitTag>
-			<VersionPrefix>$(GitTag)</VersionPrefix>
+			<GitVersionPrefix>$(GitTag.TrimStart('v'))</GitVersionPrefix>
+			<VersionPrefix>$(GitVersionPrefix)</VersionPrefix>
 		</PropertyGroup>
 	</Target>
 	<Target Name="SetVersion" BeforeTargets="PrepareForBuild" DependsOnTargets="GetGitTag" Condition="'$(Configuration)' == 'Release'">
